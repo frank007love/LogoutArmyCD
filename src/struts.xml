@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="prepare"
+				class="com.franklin.logoutarmycd.web.interceptor.PrepareInterceptor" />
+			<interceptor name="loginValidator"
+				class="com.franklin.logoutarmycd.web.interceptor.AuthorizationInterceptor" />
+			<interceptor name="sessionChecker"
+				class="com.franklin.logoutarmycd.web.interceptor.FacebookSessionCheckerInterpreter" />
+			<interceptor-stack name="basic-stack">
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="sessionChecker" />
+				<interceptor-ref name="loginValidator" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="login" type="redirect-action">loginValidation</result>
+			<result name="index">/index.jsp</result>
+			<result name="SessionOut">/sessionOut.jsp</result>
+		</global-results>
+		<action name="counter">
+			<interceptor-ref name="basic-stack" />
+			<result>/counter.jsp</result>
+		</action>
+		<!-- BillBoard Related Actions -->
+		<action name="loginBillboard">
+			<interceptor-ref name="basic-stack" />
+			<result>/loginBillboard.jsp</result>
+		</action>
+		<action name="logoutBillboard">
+			<interceptor-ref name="basic-stack" />
+			<result>/logoutBillboard.jsp</result>
+		</action>
+		<action name="getLogoutInformation" method="getLogoutInformation"
+			class="com.franklin.logoutarmycd.web.action.BillBoardAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="getPercentageBillboard" method="getPercentageBillboradInfo"
+			class="com.franklin.logoutarmycd.web.action.BillBoardAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="getJoinDateBillboard" method="getJoinDateBillboradInfo"
+			class="com.franklin.logoutarmycd.web.action.BillBoardAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="getEndDateBillboard" method="getEndDateBillboradInfo"
+			class="com.franklin.logoutarmycd.web.action.BillBoardAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="getLeftDaysBillboard" method="getLeftDaysBillboradInfo"
+			class="com.franklin.logoutarmycd.web.action.BillBoardAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="checkPublishFBPermission" method="checkPublishFB"
+			class="com.franklin.logoutarmycd.web.action.PublishFBAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="enablePublishFBPermission" method="enablePublishFB"
+			class="com.franklin.logoutarmycd.web.action.PublishFBAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+
+		<action name="loginValidation" class="com.franklin.logoutarmycd.web.action.LoginAction">
+			<result name="error" type="redirect-action">loginValidation</result>
+			<result name="success">/counter.jsp</result>
+			<result name="doLogin">/login.jsp</result>
+		</action>
+
+		<action name="getFriendInfo"
+			class="com.franklin.logoutarmycd.web.action.GetFriendInfoAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="getNews"
+			class="com.franklin.logoutarmycd.web.action.GetNewsAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="saveCounterSetting"
+			class="com.franklin.logoutarmycd.web.action.SaveCounterSettingAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="getArmyInfo"
+			class="com.franklin.logoutarmycd.web.action.GetArmyInfoAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="postCDInfo"
+			class="com.franklin.logoutarmycd.web.action.PostCDInfoAction">
+			<interceptor-ref name="basic-stack" />
+		</action>
+		<action name="inviteFriend"
+			class="com.franklin.logoutarmycd.web.action.InviteFriendAction">
+			<interceptor-ref name="basic-stack"></interceptor-ref>
+			<result>/inviteFriend.jsp</result>
+		</action>
+		<action name="forum"
+			class="com.franklin.logoutarmycd.web.action.DirectForumAction">
+			<result>/forum.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<title>Insert title here</title>
+
+<script src="http://connect.facebook.net/zh_TW/all.js"></script>
+
+<script>
+	function init(){
+		 FB.init({ 
+			  appId: '140693892608240',
+	          apiKey: 'f4192d484c26f2fe78f3e291e64a96be',
+			  status: true,
+			  xfbml: true,
+			  cookie: true,
+			  channelUrl: 'http://127.0.0.1:8080/LogoutArmyCD/xd_receiver.htm'
+	      });
+		 FB.login(function (response) {
+		       	window.alert(response.authResponse);
+		 	}, {scope: 'email'});
+	}
+      // initialize the library with the API key
+     
+   /*   FB.login(function (response) {
+       	window.alert(response.authResponse);
+ 	}, {scope: 'email'});*/
+   
+
+	/*	window.alert(FB.getLoginStatus);
+      FB.getLoginStatus(function (response) {
+    	  window.alert(response.session);
+          if (response.session) {
+              $('#AccessToken').val(response.session.access_token);
+          } else {
+              // do something...maybe show a login prompt
+          }
+      });*/
+</script>
+</head>
+<body onload='init();'>
+<div id='fb-root'></div>
+test
+</body>
+</html>

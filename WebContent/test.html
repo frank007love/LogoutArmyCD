@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<title>Insert title here</title>
+<link type="text/css" href="css/custom-theme1/jquery-ui-1.8.2.custom.css"
+	rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
+<script type="text/javascript" src="js/commonUtil.js"></script>
+</head>
+<body onload="init();">
+<script type="text/javascript">
+function ReduceDayComboxBox(combo){
+	var comboObj = combo;
+	var initValue= new Array();
+	
+	this.getInitValue = function(){
+		return initValue;
+	};
+	this.getComboBox = function(){
+		return comboObj;
+	};
+
+	this.init();
+}
+ReduceDayComboxBox.prototype.init = function(){
+	// Init the combox value
+	var initVal = this.getInitValue();
+	var initValues = [ 0, 14, 22, 30];
+	$(initValues).each(function(){
+		initVal[this] = this;
+	});
+	
+	this.createComboBoxUI();
+};
+ReduceDayComboxBox.prototype.inertVal = function(val){
+	var initVal = this.getInitValue();
+	var length = initVal.length;
+	initVal[val] = val;
+	this.createComboBoxUI(val);
+}
+ReduceDayComboxBox.prototype.createComboBoxUI = function(select){
+	var comboObj = this.getComboBox();
+	var initValue = this.getInitValue();
+	this.clear();
+	$(initValue).each(function(){
+		var value = parseInt(this);
+		if( isNaN(value) ) return;
+		var selectString = select == value ? 'selected="selected"' : '';
+		comboObj.append('<option value="' + value + '" ' + selectString + '>' + value + '</option>');
+	});
+	comboObj.append('<option value="其它">其它 </option>');
+};
+ReduceDayComboxBox.prototype.clear = function(){
+	var comboObj = this.getComboBox();
+	var children = comboObj.children();
+	$(children).each(function(){
+		$(this).remove();
+	});
+};
+
+var comboBox = null;
+function init(){
+	comboBox = new ReduceDayComboxBox($('#initComboBox'));
+}
+
+function doInsert(){
+	window.alert("NumberUtillity.isInteger(100): " + NumberUtillity.isInteger(100));
+	window.alert("NumberUtillity.isInteger(-100): " + NumberUtillity.isInteger(-100));
+	window.alert("NumberUtillity.isInteger(100.01): " + NumberUtillity.isInteger(100.01));
+	window.alert("NumberUtillity.isInteger(dd): " + NumberUtillity.isInteger("dd"));
+	window.alert("NumberUtillity.isInteger(4.4): " + NumberUtillity.isInteger(4.4));
+}
+</script>
+<button onclick="doInsert();">test</button>
+<select id="initComboBox"></select>
+</body>
+</html>

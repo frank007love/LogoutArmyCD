@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.franklin.logoutarmycd.core.storage.db.po.Logoutarmycduser0" 
+    table="logoutarmycduser_0"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="logoutarmycduser_0"
+    </meta>
+    <meta attribute="implements" inherit="false">IPoLogoutArmyCDUser</meta>
+
+    <id
+        name="fbuserid"
+        type="java.lang.String"
+        column="fbuserid"
+    >
+        <meta attribute="field-description">
+           @hibernate.id
+            generator-class="assigned"
+            type="java.lang.String"
+            column="fbuserid"
+
+
+        </meta>
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="joindate"
+        type="java.sql.Date"
+        column="joindate"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="joindate"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="periodyear"
+        type="java.lang.String"
+        column="periodyear"
+        length="2"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="periodyear"
+            length="2"
+        </meta>    
+    </property>
+    <property
+        name="periodmonth"
+        type="java.lang.String"
+        column="periodmonth"
+        length="2"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="periodmonth"
+            length="2"
+        </meta>    
+    </property>
+    <property
+        name="perioddate"
+        type="java.lang.String"
+        column="perioddate"
+        length="2"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="perioddate"
+            length="2"
+        </meta>    
+    </property>
+    <property
+        name="reducedays"
+        type="int"
+        column="reducedays"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="reducedays"
+            length="10"
+        </meta>    
+    </property>
+    <property
+        name="otherreducedays"
+        type="int"
+        column="otherreducedays"
+        length="10"
+    >
+        <meta attribute="field-description">
+           @hibernate.property
+            column="otherreducedays"
+            length="10"
+        </meta>    
+    </property>
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>
